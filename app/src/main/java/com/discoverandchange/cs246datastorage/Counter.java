@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 /**
  * Controller class that shows a counter that can be saved and incremented.
+ * @author Stephen Nielson
+ * @author Keith Higbee
+ * @author John Okleberry
  */
 public class Counter extends AppCompatActivity {
 

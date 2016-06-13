@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Creates the database.
- * Created by Jandar on 6/13/2016.
+ * @author Stephen Nielson
+ * @author Keith Higbee
+ * @author John Okleberry
  */
 public class CounterDbOpenHelper extends SQLiteOpenHelper {
 

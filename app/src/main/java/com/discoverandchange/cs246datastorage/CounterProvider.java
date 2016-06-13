@@ -10,7 +10,9 @@ import android.support.annotation.Nullable;
 
 /**
  * Data access object for working with the counter.
- * Created by Jandar on 6/13/2016.
+ * @author Stephen Nielson
+ * @author Keith Higbee
+ * @author John Okleberry
  */
 public class CounterProvider extends ContentProvider {
 
