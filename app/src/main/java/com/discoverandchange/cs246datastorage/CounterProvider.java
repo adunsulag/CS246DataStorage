@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 
 /**
+ * Data access object for working with the counter.
  * Created by Jandar on 6/13/2016.
  */
 public class CounterProvider extends ContentProvider {
@@ -16,7 +17,7 @@ public class CounterProvider extends ContentProvider {
   private static final String AUTHORITY = "com.discoverandchange.cs246datastorage.CounterProvider";
   private static final String BASE_PATH = "counterActivity";
   public static final Uri CONTENT_URI =
-      Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH );
+      Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
 
   // Constant to identify the requested operation
   private static final int COUNTER = 1;     // get the data
@@ -32,15 +33,16 @@ public class CounterProvider extends ContentProvider {
 
   @Override
   public boolean onCreate() {
-    CounterDBOpenHelper helper = new CounterDBOpenHelper(getContext());
+    CounterDbOpenHelper helper = new CounterDbOpenHelper(getContext());
     database = helper.getWritableDatabase();
     return true;
   }
 
   @Nullable
   @Override
-  public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-    return database.query(CounterDBOpenHelper.COUNTER, CounterDBOpenHelper.ALL_COLUMNS,
+  public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+                      String sortOrder) {
+    return database.query(CounterDbOpenHelper.COUNTER, CounterDbOpenHelper.ALL_COLUMNS,
         selection, null, null, null, null);
   }
 
@@ -53,19 +55,19 @@ public class CounterProvider extends ContentProvider {
   @Nullable
   @Override
   public Uri insert(Uri uri, ContentValues values) {
-    long id = database.insert(CounterDBOpenHelper.COUNTER,
+    long id = database.insert(CounterDbOpenHelper.COUNTER,
         null, values);
     return Uri.parse(BASE_PATH + "/" + id);
   }
 
   @Override
   public int delete(Uri uri, String selection, String[] selectionArgs) {
-    return database.delete(CounterDBOpenHelper.COUNTER, selection, selectionArgs);
+    return database.delete(CounterDbOpenHelper.COUNTER, selection, selectionArgs);
   }
 
   @Override
   public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-    return database.update(CounterDBOpenHelper.COUNTER,
+    return database.update(CounterDbOpenHelper.COUNTER,
         values, selection, selectionArgs);
   }
 }

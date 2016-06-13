@@ -5,9 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
+ * Creates the database.
  * Created by Jandar on 6/13/2016.
  */
-public class CounterDBOpenHelper extends SQLiteOpenHelper {
+public class CounterDbOpenHelper extends SQLiteOpenHelper {
 
   // name and version
   private static final String DATABASE_NAME = "counterActivity";
@@ -25,13 +26,13 @@ public class CounterDBOpenHelper extends SQLiteOpenHelper {
 
   // sql to create
   private static final String TBL_CREATE =
-      "CREATE TABLE " + COUNTER + " (" +
-          PKEY + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-          VALUE + " INTEGER" +
-          ")";
+      "CREATE TABLE " + COUNTER + " ("
+          + PKEY + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+          + VALUE + " INTEGER"
+          + ")";
 
   // constructor
-  public CounterDBOpenHelper(Context context) {
+  public CounterDbOpenHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
@@ -41,7 +42,7 @@ public class CounterDBOpenHelper extends SQLiteOpenHelper {
   }
 
   @Override
-  public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+  public void onUpgrade(SQLiteDatabase db, int versionOld, int versionNew) {
     db.execSQL("DROP TABLE IF EXISTS " + COUNTER);
     onCreate(db);
   }
